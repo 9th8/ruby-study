@@ -36,3 +36,7 @@ bird.count(3)
   puts "#{pet.name} is a #{pet.class}. #{pet.gender ? "His" : "Her"} age is #{pet.age} " \
   "and #{pet.gender ? "his" : "her"} color is #{pet.color}. #{pet.name} says '#{pet.says}'"
 end
+
+pets = {}
+[cat, dog, bird].each { |pet| pets[pet.class] = [pet.name, pet.age] }
+puts "Cat's name is #{pets[Cat][0]}."
