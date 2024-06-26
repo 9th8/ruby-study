@@ -39,9 +39,9 @@ paragraph_count = text.split("\n\n").count
 average_sentences_per_paragraph = "%.2f" % (sentence_count.to_f / paragraph_count)
 average_words_per_sentence = "%.2f" % (word_count.to_f / sentence_count)
 
-sentences = text.gsub(/\s+/, " ").split(/[\.\?\!]/).map { |i| i.strip }
+sentences = text.gsub(/\s+/, " ").split(/[\.\?\!]/).map(&:strip)
 one_third = sentences.count / 3
-sentences_sorted = sentences.sort_by { |sentence| sentence.length }
+sentences_sorted = sentences.sort_by(&:length)
 ideal_sentences = sentences_sorted.slice(one_third, one_third + 1)
 ideal_sentences = ideal_sentences.select { |sentence| sentence =~ /is|are/ } unless contains_russian_letters?(text)
 ideal_sentences = sentences.select { |sentence| ideal_sentences.include?(sentence) }
@@ -53,7 +53,7 @@ puts "Analyzing '#{file_with_extension}':",
   "- There are #{word_count} words.",
   "- there are #{keyword_count} key words. It is #{keyword_percentage}% of all words.",
   "- There are #{sentence_count} sentences.",
-  "- There are #{paragraph_count} paragraphs",
-  "- Average number of sentences per paragraph is #{average_sentences_per_paragraph}",
-  "- Average number of words per sentence is #{average_words_per_sentence}"
+  "- There are #{paragraph_count} paragraphs.",
+  "- Average number of sentences per paragraph is #{average_sentences_per_paragraph}.",
+  "- Average number of words per sentence is #{average_words_per_sentence}."
 puts "Summary follows: #{ideal_sentences.join(". ")}."
