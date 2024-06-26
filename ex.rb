@@ -1,25 +1,13 @@
 #!/usr/bin/env  ruby
 
-print "Please choose the file to analyze: "
-fname = gets.chomp
+text = " Ruby is a great programming language. It is object oriented and has many groovy features. Some people don't
+  like it, but that's not our problem! It's easy to learn. It's great. To learn more about Ruby, visit the official Ruby
+  website today."
 
-begin
-  file_with_extension = Dir.glob("#{fname}.*").first
-  raise Errno::ENOENT, "File not found" if file_with_extension.nil?
-  lines = File.readlines(file_with_extension)
-rescue Errno::ENOENT => e
-  puts "Error: #{e.message}"
-  exit 1
-end
-
-text = lines.join
-
-puts "Analyzing '#{file_with_extension}':",
-  "- Line count is #{lines.count}.",
-  "- Text total character count is #{text.length}.",
-  "- Text count whithout newlines and spaces is #{text.gsub(/\s+/, "").length}.",
-  "- There are #{w = text.split(/\s+/).count} words.",
-  "- There are #{s = text.split(/[\.\?\!]/).count} sentences.",
-  "- There are #{p = text.split("\n\n").count} paragraphs",
-  "- Average number of sentences per paragraph is #{"%.2f" % (s.to_f / p)}",
-  "- Average number of words per sentence is #{"%.2f" % (w.to_f / s)}"
+sentences = text.gsub(/\s+/, " ").split(/[\.\?\!]/).map { |i| i.strip }
+one_third = sentences.count / 3
+sentences_sorted = sentences.sort_by { |sentence| sentence.length }
+ideal_sentences = sentences_sorted.slice(one_third, one_third + 1)
+ideal_sentences = ideal_sentences.select { |sentence| sentence =~ /is|are/ }
+ideal_sentences = ideal_sentences.select { |sentence| sentences.include?(sentence) }
+puts "#{ideal_sentences.join(". ")}."
