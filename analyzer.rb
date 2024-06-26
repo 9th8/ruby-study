@@ -21,6 +21,13 @@ end
 
 text = lines.join
 
+def contains_russian_letters?(text)
+  russian_range = /[\u0410-\u044F]/
+  text.each_char { |char| return true if char.match?(russian_range) }
+
+  false
+end
+
 line_count = lines.count
 text_length = text.length
 text_length_without_spaces = text.gsub(/\s+/, "").length
@@ -36,7 +43,7 @@ sentences = text.gsub(/\s+/, " ").split(/[\.\?\!]/).map { |i| i.strip }
 one_third = sentences.count / 3
 sentences_sorted = sentences.sort_by { |sentence| sentence.length }
 ideal_sentences = sentences_sorted.slice(one_third, one_third + 1)
-ideal_sentences = ideal_sentences.select { |sentence| sentence =~ /is|are/ }
+ideal_sentences = ideal_sentences.select { |sentence| sentence =~ /is|are/ } unless contains_russian_letters?(text)
 ideal_sentences = sentences.select { |sentence| ideal_sentences.include?(sentence) }
 
 puts "Analyzing '#{file_with_extension}':",
