@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
 ["net/http", "uri", "json"].each { |m| require m }
+require "dotenv"
+Dotenv.load(".env")
 
 class Request # {{{
   attr_reader :stack, :name, :image
@@ -36,16 +38,16 @@ class Request # {{{
 
   def upgraded?(endpoint, desired_state)
     state = ""
-    5.times do
+    5.times do |try|
       uri = URI.parse("#{@api}/v1/projects/#{@project_id}/services/#{endpoint}")
       Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
         req = Net::HTTP::Get.new(uri)
         req.basic_auth(@access_key, @secret_key)
         state = JSON.parse(http.request(req).body)["state"]
       end
-      puts "\t[...check #{6 - _} of 5] service status is '#{state}'"
+      puts "\t[...check #{5 - try} of 5] service status is '#{state}'"
       return true if state == desired_state
-      sleep 15 unless _ == 0
+      sleep 15 unless try == 4
     end
     raise "Failure: Could not complete upgrade. Check Rancher state."
   end
