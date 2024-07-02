@@ -5,24 +5,28 @@
 class Request # {{{
   attr_reader :stack, :name, :image
   def initialize
-    @api, @access_key, @secret_key, @project_id, @stack, @name, @image =
-      ENV.values_at("RANCHER_API", "RANCHER_ACCESS_KEY", "RANCHER_SECRET_KEY", "RANCHER_PROJECT_ID",
-        "RANCHER_STACK", "SERVICE_NAME", "IMAGE_VERSION")
+    @api = ENV["RANCHER_API"]
+    @access_key = ENV["RANCHER_ACCESS_KEY"]
+    @secret_key = ENV["RANCHER_SECRET_KEY"]
+    @project_id = ENV["RANCHER_PROJECT_ID"]
+    @stack = ENV["RANCHER_STACK"]
+    @name = ENV["SERVICE_NAME"]
+    @image = ENV["IMAGE_VERSION"]
   end
 
   def get(endpoint)
-    @uri = URI.parse("#{@api}/v1/projects/#{@project_id}/#{endpoint}")
-    Net::HTTP.start(@uri.host, @uri.port, use_ssl: true) do |http|
-      req = Net::HTTP::Get.new(@uri)
+    uri = URI.parse("#{@api}/v1/projects/#{@project_id}/#{endpoint}")
+    Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+      req = Net::HTTP::Get.new(uri)
       req.basic_auth(@access_key, @secret_key)
       JSON.parse(http.request(req).body)["data"][0]
     end
   end
 
   def post(endpoint, payload)
-    @uri = URI.parse("#{@api}/v2-beta/projects/#{@project_id}/services/#{endpoint}")
-    Net::HTTP.start(@uri.host, @uri.port, use_ssl: true) do |http|
-      req = Net::HTTP::Post.new(@uri)
+    uri = URI.parse("#{@api}/v2-beta/projects/#{@project_id}/services/#{endpoint}")
+    Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+      req = Net::HTTP::Post.new(uri)
       req.body = payload
       req.content_type = "application/json"
       req.basic_auth(@access_key, @secret_key)
@@ -32,20 +36,18 @@ class Request # {{{
 
   def upgraded?(endpoint, desired_state)
     state = ""
-    try = 5
-    until state == desired_state
-      @uri = URI.parse("#{@api}/v1/projects/#{@project_id}/services/#{endpoint}")
-      Net::HTTP.start(@uri.host, @uri.port, use_ssl: true) do |http|
-        req = Net::HTTP::Get.new(@uri)
+    5.times do
+      uri = URI.parse("#{@api}/v1/projects/#{@project_id}/services/#{endpoint}")
+      Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+        req = Net::HTTP::Get.new(uri)
         req.basic_auth(@access_key, @secret_key)
         state = JSON.parse(http.request(req).body)["state"]
       end
-      puts "\t[...check #{6 - try} of 5] service status is '#{state}'"
-      unless state == desired_state
-        ((try -= 1) > 0) ? (sleep 15) : (raise "Failure: Could not complere upgrade. Check Rancher state.")
-      end
+      puts "\t[...check #{6 - _} of 5] service status is '#{state}'"
+      return true if state == desired_state
+      sleep 15 unless _ == 0
     end
-    true
+    raise "Failure: Could not complete upgrade. Check Rancher state."
   end
 
   def finish_upgrade(endpoint)
@@ -53,8 +55,6 @@ class Request # {{{
     post("#{endpoint}/?action=finishupgrade", nil)
     upgraded?(endpoint, "active")
   end
-rescue => e
-  puts e
 end # }}}
 
 service = Request.new
