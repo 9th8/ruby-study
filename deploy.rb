@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 
 ["net/http", "uri", "json"].each { |m| require m }
-require "dotenv"
-Dotenv.load(".env")
 
 class Request # {{{
   attr_reader :stack, :name, :image
@@ -45,11 +43,11 @@ class Request # {{{
         req.basic_auth(@access_key, @secret_key)
         state = JSON.parse(http.request(req).body)["state"]
       end
-      puts "\t[...check #{5 - try} of 5] service status is '#{state}'"
+      puts "\t[...check #{try + 1} of 5] service status is '#{state}'"
       return true if state == desired_state
       sleep 15 unless try == 4
     end
-    raise "Failure: Could not complete upgrade. Check Rancher state."
+    raise "FAILURE: Could not complete upgrade. Check Rancher state manually."
   end
 
   def finish_upgrade(endpoint)
@@ -72,7 +70,7 @@ raise "FAILURE: service: #{service.name} not found." if service_data.empty?
 launch_config = service_data["launchConfig"].merge("imageUuid" => "docker:#{service.image}")
 payload = {inServiceStrategy: {batchSize: 1, intervalMillis: 2000, startFirst: false,
                                launchConfig: launch_config}}.to_json
-Request.new.post("#{service_data["id"]}/?action=upgrade", payload)
+service.post("#{service_data["id"]}/?action=upgrade", payload)
 
 service.finish_upgrade(service_data["id"]) if service.upgraded?(service_data["id"], "upgraded")
-puts "SUCCESS: Service '#{service.name}' was upgraded!"
+puts "SUCCESS: service '#{service.name}' was upgraded!"
