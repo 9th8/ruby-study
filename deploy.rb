@@ -1,14 +1,9 @@
 #!/usr/bin/env ruby
-
+(["debug", "debug/open", "dotenv"].each { |m| require m } if ENV["DEBUG"]) && Dotenv.load(".env")
 require "net/http"
 require "json"
 
-if ENV["DEBUG"]
-  ["debug", "debug/open", "dotenv"].each { |m| require m }
-  Dotenv.load(".env")
-end
-
-class Request # {{{
+class Request
   attr_reader :stack, :name, :image
 
   # Собирает параметры сценария, переданные в переменных окружения.
@@ -52,7 +47,7 @@ class Request # {{{
     request("Post", "services/#{endpoint}/?action=finishupgrade")
     upgraded?(endpoint, "active")
   end
-end # }}}
+end
 
 service = Request.new
 

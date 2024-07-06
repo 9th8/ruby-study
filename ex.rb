@@ -1,5 +1,8 @@
 #!/usr/bin/env  ruby
 
+["debug", "dotenv"].each { |m| require m }
+# Dotenv.load(".env")
+
 class Dungeon
   attr_accessor :player
 
