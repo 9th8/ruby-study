@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 (["debug", "debug/open", "dotenv"].each { |m| require m } if ENV["DEBUG"]) && Dotenv.load(".env")
+
 require "net/http"
 require "json"
 
