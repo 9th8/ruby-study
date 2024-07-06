@@ -1,6 +1,6 @@
 #!/usr/bin/env  ruby
 
-["debug", "dotenv"].each { |m| require m }
+["debug", "debug/open"].each { |m| require m if ENV["DEBUG"] }
 # Dotenv.load(".env")
 
 class Dungeon
