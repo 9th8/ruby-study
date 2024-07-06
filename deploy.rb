@@ -3,7 +3,8 @@
 #
 # "+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"+.+"
 
-(["debug", "debug/open", "dotenv"].each { |m| require m } if ENV["DEBUG"]) && Dotenv.load(".env")
+["debug", "debug/open"].each { |m| require m if ENV["DEBUG"] }
+(require "dotenv" if ENV["DOTENV"]) && Dotenv.load(".env")
 
 require "net/http"
 require "json"
