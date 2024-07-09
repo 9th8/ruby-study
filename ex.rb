@@ -1,15 +1,19 @@
 #!/usr/bin/env  ruby
 
 ["debug", "debug/open"].each { |m| require m if ENV["DEBUG"] }
-["debug", "dotenv"].each { |m| require m }
-# Dotenv.load(".env")
 
-class String
-  def titleize
-    gsub(/(\A|\s)\w/) { |letter| letter.upcase }
+class Calculator
+  def self.count_to_large_number
+    x = 0
+    100000.times { x += 1 }
+  end
+
+  def self.count_to_small_number
+    x = 0
+    1000.times { x += 1 }
   end
 end
 
-raise "Fail 1" unless "this is a test".titleize == "This Is A Test"
-raise "Fail 2" unless "another test 1234".titleize == "Another Test 1234"
-raise "Fail 3" unless "We're testing titleize".titleize == "We're Testing Titleize"
+Calculator.count_to_large_number
+
+Calculator.count_to_small_number
