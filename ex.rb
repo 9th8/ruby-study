@@ -2,18 +2,8 @@
 
 ["debug", "debug/open"].each { |m| require m if ENV["DEBUG"] }
 
-class Calculator
-  def self.count_to_large_number
-    x = 0
-    100000.times { x += 1 }
-  end
+require "yaml"
 
-  def self.count_to_small_number
-    x = 0
-    1000.times { x += 1 }
-  end
-end
+read_data = YAML.load_file("ppl.yaml")
 
-Calculator.count_to_large_number
-
-Calculator.count_to_small_number
+puts read_data

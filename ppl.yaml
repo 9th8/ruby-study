@@ -1,0 +1,5 @@
+---
+- name: Fred Bloggs
+  age: 45
+- name: Laura Smith
+  age: 23

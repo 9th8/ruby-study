@@ -1,0 +1,199 @@
+stages:
+  - prepare
+  - restore
+  - build
+  - test
+  - publish
+  - docker-build
+  - deploy
+  - k6-short-test
+
+workflow:
+  rules:
+    - if: $DOTNET_VERSION == null
+      variables:
+        DOTNET_VERSION: "6.0"
+    - if: $DOTNET_VERSION != null
+      variables:
+        DOTNET_VERSION: $DOTNET_VERSION
+
+default:
+  tags:
+    - docker
+
+variables:
+  BUILDER_IMAGE: harbor.homecredit.ru/mbr-devops/builder-dotnet-$DOTNET_VERSION-alpine:latest
+  RUNTIME_IMAGE: harbor.homecredit.ru/mbr-devops/service-dotnet-$DOTNET_VERSION-alpine:latest
+
+before_script:
+  - >
+    export CI_JOB_DATE=$(date +'%d.%m.%Y');
+    export CI_JOB_YEAR=$(date +'%Y');
+    export CI_JOB_MONTH=$(date +'%m');
+    export CI_JOB_WEEK=$(date +'%V');
+
+prepare:
+  stage: prepare
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - >
+      wget --no-check-certificate --header="PRIVATE-TOKEN:$CI_GL_TOKEN" \
+        -O Dockerfile "https://gl.homecredit.ru/api/v4/projects/817/repository/files/Dockerfiles%2FDockerfile/raw";
+      if [ ! -f "Dockerfile" ]; then exit 1; fi
+
+      if [ "${CI_COMMIT_REF_NAME}" == "hotfix" ]; then
+        echo "DOCKER_TAG=$HARBOR_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:release.$CI_JOB_DATE_$CI_PIPELINE_ID" \
+          >> docker_tag.env;
+      elif [ "${CI_COMMIT_TAG}" == "build" ]; then
+        echo "DOCKER_TAG=$HARBOR_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_TAG.$CI_JOB_DATE_$CI_PIPELINE_ID" \
+          >> docker_tag.env;
+      else
+        echo "DOCKER_TAG=$HARBOR_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_REF_SLUG.$CI_PIPELINE_ID" \
+          >> docker_tag.env;
+      fi;
+      cat docker_tag.env
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - Dockerfile
+    reports:
+      dotenv: docker_tag.env
+
+restore:
+  image: $BUILDER_IMAGE
+  stage: restore
+  before_script:
+    - >
+      sed -i -e "s/%DOTNET_ARTIFACTORY_USER%/${DOCKER_REGISTRY_LOGIN}/g" \
+        -e "s/%DOTNET_ARTIFACTORY_PASS%/${DOCKER_REGISTRY_PASSWORD}/g" /root/.nuget/NuGet/NuGet.Config
+  script:
+    - dotnet restore -r $CI_BUILD_PLATFORM --verbosity n --packages /nuget_packages
+  artifacts:
+    expire_in: 1h
+    paths:
+      - "**/obj/*"
+
+build:
+  image: $BUILDER_IMAGE
+  stage: build
+  script:
+    - dotnet build --nologo -c Release -r $CI_BUILD_PLATFORM /t:Rebuild --no-restore --packages /nuget_packages
+  except:
+    - master
+
+test:
+  image: $BUILDER_IMAGE
+  stage: test
+  script:
+    - >
+      dotnet test --nologo --no-restore --logger trx --results-directory "TestsResults" \
+        /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+  except:
+    - master
+
+.publish_common:
+  image: $BUILDER_IMAGE
+  stage: publish
+  script:
+    - >
+      dotnet publish $CI_SOLUTION_NAME/$CI_SOLUTION_NAME.csproj --nologo -c Release -o app --no-restore \
+        /p:SelfContained=true /p:useapphost=true /p:PublishSingleFile=true /p:PublishTrimmed=$CI_PUBLISH_TRIMMED \
+        /p:TrimMode=link /p:OutpuType=exe /p:IncludeAllContentForSelfExtract=true /p:RuntimeIdentifier=$CI_BUILD_PLATFORM \
+        /p:DebugSupport=false /p:Version=$CI_JOB_YEAR.$CI_JOB_MONTH.$(($CI_PIPELINE_ID / 10000)).$(($CI_PIPELINE_ID % 10000));
+      ln -s ./${CI_PROJECT_NAME} executable
+  artifacts:
+    expire_in: 1h
+    paths:
+      - "./app/*"
+
+publish:
+  extends: .publish_common
+  only:
+    - dev
+    - hotfix
+    - master
+
+publish_with_tags:
+  extends: .publish_common
+  rules:
+    - if: $CI_COMMIT_TAG == "build" # тэг для принудительной сборки контейнера.
+
+.docker_build_common:
+  stage: docker-build
+  image:
+    name: artifactory.homecredit.ru:6555/kaniko-project/executor:debug
+    entrypoint: [""]
+  before_script:
+    - >
+      mkdir -p /kaniko/.docker
+
+      echo "{\"auths\":{\"${HARBOR_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${HARBOR_REGISTRY_LOGIN}" "${HARBOR_REGISTRY_PASSWORD}" \
+        | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+  script:
+    - >
+      /kaniko/executor \
+        --context "${CI_PROJECT_DIR}" \
+        --dockerfile "${CI_PROJECT_DIR}/Dockerfile" \
+        --destination "${DOCKER_TAG}" \
+        --skip-tls-verify \
+        --build-arg "PROJECT_NAME=${CI_SOLUTION_NAME}" \
+        --build-arg "BASE_RUNTIME_IMAGE=${RUNTIME_IMAGE}"
+
+docker_build:
+  extends: .docker_build_common
+  only:
+    - dev
+    - hotfix
+    - master
+
+docker_build_with_tags:
+  extends: .docker_build_common
+  rules:
+    - if: $CI_COMMIT_TAG == "build" # тэг для принудительной сборки контейнера.
+
+.deploy_common:
+  stage: deploy
+  image: harbor.homecredit.ru/mbr-devops/rancher-deploy:latest
+  variables:
+    GIT_STRATEGY: none
+    RANCHER_API: $RANCHER_API
+    RANCHER_ACCESS_KEY: $RANCHER_ACCESS_KEY
+    RANCHER_SECRET_KEY: $RANCHER_SECRET_KEY
+    RANCHER_PROJECT_ID: "1a915"
+    RANCHER_STACK: $CI_ENVIRONMENT_NAME
+    SERVICE_NAME: $RANCHER_SERVICE_NAME
+    IMAGE_VERSION: $DOCKER_TAG
+  script: /deploy.rb
+
+deploy_dev:
+  extends: .deploy_common
+  environment:
+    name: jupiter-mbr
+    url: https://jupiter.mbr.homecredit.ru
+  only:
+    - dev
+
+deploy_release:
+  extends: .deploy_common
+  environment:
+    name: uat-mbr
+    url: https://uat.mbr.homecredit.ru
+  only:
+    - hotfix
+
+k6-short-test:
+  stage: k6-short-test
+  script:
+    - >
+      CURRENT_SCRIPT="$(echo $CI_PROJECT_NAME | tr "[:upper:]" "[:lower:]")";
+      export CURRENT_SCRIPT;
+      ssh -o StrictHostKeyChecking=no -o LogLevel=QUIET k6@rancher-test.mbr.homecredit.ru -p 2022 --
+      "K6_PROMETHEUS_RW_SERVER_URL=\"http://lb.monitoring.renv-0005.rancher-test.homecredit.ru:8428/api/v1/write\"
+      k6 -o experimental-prometheus-rw -e MY_HOSTNAME=mbr.uat-mbr.renv-0005.rancher-test.homecredit.ru:6030
+      run scripts/short-load-tests/$CURRENT_SCRIPT.js"
+  only:
+    - hotfix
+  tags:
+    - nix
+  allow_failure: true
