@@ -2,28 +2,44 @@
 
 # ["debug", "debug/open"].each { |m| require m if ENV["DEBUG"] }
 
-require "sequel"
+require "webrick"
 
-db = Sequel.sqlite("temp.db")
+class MyNormalClass
+  def self.add(a, b)
+    a.to_i + b.to_i
+  end
 
-unless db.table_exists?(:people)
-  db.create_table :people do
-    primary_key :id
-    String :first_name
-    String :last_name
-    Integer :age
+  def self.subtract(a, b)
+    a.to_i - b.to_i
   end
 end
 
-people = db[:people]
-people.insert(first_name: "Fred", last_name: "Bloggs", age: 32)
+class MyServlet < WEBrick::HTTPServlet::AbstractServlet
+  def do_GET(request, response)
+    if request.query["a"] && request.query["b"]
+      a = request.query["a"]
+      b = request.query["b"]
+      response.status = 200
+      response.content_type = "text/plain"
 
-puts "There are #{people.count} people in the database"
+      result = case request.path
+      when "/add"
+        MyNormalClass.add(a, b)
+      when "/subtract"
+        MyNormalClass.subtract(a, b)
+      else
+        "No such method"
+      end
 
-people.each do |person|
-  puts person[:first_name]
+      response.body = result.to_s + "\n"
+    else
+      response.status = 400
+      response.body = "You did not provide the correct parameters"
+    end
+  end
 end
 
-db.fetch("SELECT * FROM people") do |row|
-  puts row[:first_name]
-end
+server = WEBrick::HTTPServer.new(Port: 1234)
+server.mount "/", MyServlet
+trap("INT") { server.shutdown }
+server.start
