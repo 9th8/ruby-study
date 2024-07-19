@@ -1,14 +1,15 @@
 #!/usr/bin/env  ruby
 
-require "socket"
+["pp"].each { |m| require m }
 
-server = TCPServer.new(nil, 1234)
-
-loop do
-  Thread.start(server.accept) do |connection|
-    while (line = connection.gets)
-      puts line
-      connection.puts "Received '#{line.chomp}'"
-    end
+class TestClass
+  def initialize(count)
+    @@a = defined?(@@a) ? @@a + 1 : 0
+    @c = @@a
+    @d = [a: {b: count}, c: :d] * count
   end
 end
+
+pp TestClass.new(2), STDOUT, 120
+pp TestClass.new(3), $>, 120
+pp TestClass.new(4), $>, 120
