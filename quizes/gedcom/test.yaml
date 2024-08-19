@@ -1,0 +1,1215 @@
+---
+- ! '':
+    id: HEAD
+    sour: PAF 2.2
+    dest: PAF
+    date: Friday, 20th November 1992
+    file: ROYALS.GED
+    char: ANSEL
+    gedc:
+      form: LINEAGE-LINKED
+    subm: "@SUBM1@"
+    note:
+      conc: ">> Thanks for your interest. Denis Reid"
+- subm:
+    id: SUBM1
+    name: Denis R. Reid
+    addr:
+      cont: 'Internet Email address: ah189@cleveland.freenet.edu'
+    phon: "(216) 237-5364"
+    rin: '1'
+- indi:
+    id: I1
+    name: Edward_VII /Wettin/
+    titl: King of England
+    sex: M
+    birt:
+      plac: Buckingham,Palace,London,England
+    deat:
+      plac: Buckingham,Palace,London,England
+    buri:
+      plac: Windsor,Berkshire,England
+    fams: "@F2@"
+    famc: "@F1@"
+    rin: '2'
+- indi:
+    id: I2
+    name: Alexandra of_Denmark "Alix"//
+    titl: Princess
+    sex: F
+    birt:
+      plac: Yellow Palace,Copenhagen,Denmark
+    deat:
+      plac: Sandringham,,Norfolk,England
+    buri:
+      plac: St. George Chap.,Windsor,Berkshire,England
+    fams: "@F2@"
+    famc: "@F24@"
+    rin: '3'
+- indi:
+    id: I3
+    name: George_V /Windsor/
+    titl: King of England
+    sex: M
+    birt:
+      plac: Marlborough Hse,London,England
+    chr:
+      date: Friday, 7th July 1865
+    deat:
+      plac: Sandringham,Norfolk,England
+    buri:
+      plac: Windsor Castle,St. George Chap.,Berkshire,England
+    fams: "@F3@"
+    famc: "@F2@"
+    rin: '4'
+- indi:
+    id: I4
+    name: Mary_of_Teck (May) //
+    titl: Queen
+    sex: F
+    birt:
+      plac: Kensington,Palace,London,England
+    deat:
+      plac: Marlborough Hse,London,England
+    buri:
+      plac: St. George's,Chapel,Windsor Castle,England
+    fams: "@F3@"
+    famc: "@F19@"
+    rin: '5'
+- indi:
+    id: I5
+    name: Edward_VIII /Windsor/
+    titl: Duke of Windsor
+    sex: M
+    birt:
+      plac: White Lodge,Richmond Park,Surrey,England
+    deat:
+      plac: Paris,,,France
+    buri:
+      plac: Frogmore,Windsor,Berkshire,England
+    fams: "@F12@"
+    famc: "@F3@"
+    rin: '6'
+- indi:
+    id: I6
+    name: Bessiewallis /Warfield/
+    sex: F
+    birt:
+      plac: ",,,U.S.A."
+    deat:
+      plac: Paris,,,France
+    buri:
+      plac: Frogmore,Windsor,Berkshire,England
+    fams: "@F15@"
+    famc: "@F23@"
+    rin: '7'
+- indi:
+    id: I7
+    name: George_VI /Windsor/
+    titl: King of England
+    sex: M
+    birt:
+      plac: York Cottage,Sandringham,Norfolk,England
+    deat:
+      plac: Sandringham,Norfolk,England
+    buri:
+      plac: St. George Chap.,,Windsor,England
+    fams: "@F4@"
+    famc: "@F3@"
+    rin: '8'
+- indi:
+    id: I8
+    name: Elizabeth Angela Marguerite/Bowes-Lyon/
+    titl: Lady
+    sex: F
+    birt:
+      plac: ",,London,England"
+    chr:
+      date: Sunday, 23rd September 1900
+    fams: "@F4@"
+    famc: "@F20@"
+    rin: '9'
+- indi:
+    id: I9
+    name: Elizabeth_II Alexandra Mary/Windsor/
+    titl: Queen of England
+    sex: F
+    birt:
+      plac: 17 Bruton St.,London,W1,England
+    fams: "@F6@"
+    famc: "@F4@"
+    rin: '10'
+- indi:
+    id: I10
+    name: Philip /Mountbatten/
+    titl: Prince
+    sex: M
+    birt:
+      plac: Isle of Kerkira,Mon Repos,Corfu,Greece
+    fams: "@F6@"
+    famc: "@F16@"
+    rin: '11'
+- indi:
+    id: I11
+    name: Charles Philip Arthur/Windsor/
+    titl: Prince
+    sex: M
+    birt:
+      plac: Buckingham,Palace,London,England
+    chr:
+      plac: Buckingham,Palace,Music Room,England
+    fams: "@F8@"
+    famc: "@F6@"
+    rin: '12'
+- indi:
+    id: I12
+    name: Diana Frances /Spencer/
+    titl: Lady
+    sex: F
+    birt:
+      plac: Park House,Sandringham,Norfolk,England
+    chr:
+      plac: Sandringham,Church,Norfolk,England
+    fams: "@F8@"
+    famc: "@F26@"
+    rin: '13'
+- indi:
+    id: I13
+    name: William Arthur Philip/Windsor/
+    titl: Prince
+    sex: M
+    birt:
+      plac: St. Mary's Hosp.,Paddington,London,England
+    chr:
+      plac: Music Room,Buckingham,Palace,England
+    famc: "@F8@"
+    rin: '14'
+- indi:
+    id: I14
+    name: Henry Charles Albert/Windsor/
+    titl: Prince
+    sex: M
+    birt:
+      plac: St. Mary's Hosp.,Paddington,London,England
+    famc: "@F8@"
+    rin: '15'
+- indi:
+    id: I15
+    name: Anne Elizabeth Alice/Windsor/
+    titl: Princess
+    sex: F
+    birt:
+      plac: Clarence House,St. James,,England
+    chr:
+      plac: ",,,England"
+    fams: "@F7@"
+    famc: "@F6@"
+    rin: '16'
+- indi:
+    id: I16
+    name: Mark Anthony Peter/Phillips/
+    titl: Captain
+    sex: M
+    birt:
+      date: Wednesday, 22nd September 1948
+    fams: "@F7@"
+    famc: "@F40@"
+    rin: '17'
+- indi:
+    id: I17
+    name: Peter Mark Andrew/Phillips/
+    sex: M
+    birt:
+      plac: St. Mary's Hosp.,Paddington,London,England
+    chr:
+      plac: Music Room,Buckingham,Palace,England
+    famc: "@F7@"
+    rin: '18'
+- indi:
+    id: I18
+    name: Zara Anne Elizabeth/Phillips/
+    sex: F
+    birt:
+      plac: St. Marys Hosp.,Paddington,London,England
+    famc: "@F7@"
+    rin: '19'
+- indi:
+    id: I19
+    name: Andrew Albert Christian/Windsor/
+    titl: Duke of York
+    sex: M
+    birt:
+      plac: Belgian Suite,Buckingham,Palace,England
+    fams: "@F21@"
+    famc: "@F6@"
+    rin: '20'
+- indi:
+    id: I20
+    name: Sarah Margaret /Ferguson/
+    titl: Duchess of York
+    sex: F
+    birt:
+      plac: 27 Welbech St.,Marylebone,London,England
+    fams: "@F21@"
+    famc: "@F22@"
+    rin: '21'
+- indi:
+    id: I21
+    name: Beatrice Elizabeth Mary/Windsor/
+    titl: Princess
+    sex: F
+    birt:
+      plac: Portland Hosp.,,England
+    famc: "@F21@"
+    rin: '22'
+- indi:
+    id: I22
+    name: Eugenie Victoria Helena/Windsor/
+    titl: Princess
+    sex: F
+    birt:
+      plac: London,England
+    chr:
+      plac: Sandringham,England
+    famc: "@F21@"
+    rin: '23'
+- indi:
+    id: I23
+    name: Edward Anthony Richard/Windsor/
+    titl: Prince
+    sex: M
+    birt:
+      plac: Buckingham,Palace,London,England
+    chr:
+      date: Saturday, 2nd May 1964
+    famc: "@F6@"
+    rin: '24'
+- indi:
+    id: I24
+    name: Margaret Rose /Windsor/
+    titl: Princess
+    sex: F
+    birt:
+      plac: Glamis Castle,,Angus,Scotland
+    fams: "@F5@"
+    famc: "@F4@"
+    rin: '25'
+- indi:
+    id: I25
+    name: Anthony Charles Robert/Armstrong-Jones/
+    titl: Earl of Snowdon
+    sex: M
+    birt:
+      date: Friday, 7th March 1930
+    fams: "@F44@"
+    rin: '26'
+- indi:
+    id: I26
+    name: David Albert Charles/Armstrong-Jones/
+    titl: Vicount Linley
+    sex: M
+    birt:
+      date: Friday, 3rd November 1961
+    famc: "@F5@"
+    rin: '27'
+- indi:
+    id: I27
+    name: Sarah Frances Elizabeth/Armstrong-Jones/
+    titl: Lady
+    sex: F
+    birt:
+      date: Friday, 1st May 1964
+    famc: "@F5@"
+    rin: '28'
+- indi:
+    id: I28
+    name: Mary /Windsor/
+    titl: Princess Royal
+    sex: F
+    birt:
+      plac: York Cottage,Sandringham,Norfolk,England
+    deat:
+      plac: Harewood House,Yorkshire,,England
+    fams: "@F10@"
+    famc: "@F3@"
+    rin: '29'
+- indi:
+    id: I29
+    name: Henry George Charles/Lascelles/
+    titl: Viscount
+    sex: M
+    birt:
+      date: '1882'
+    deat:
+      date: '1947'
+    fams: "@F10@"
+    rin: '30'
+- indi:
+    id: I30
+    name: George Earl_of_Harewood /Lascelles/
+    titl: Viscount
+    sex: M
+    birt:
+      date: '1923'
+    fams: "@F29@"
+    famc: "@F10@"
+    rin: '31'
+- indi:
+    id: I31
+    name: Marion (Maria) Donata/Stein/
+    titl: Countess
+    sex: F
+    birt:
+      date: '1926'
+    fams: "@F27@"
+    famc: "@F47@"
+    rin: '32'
+- indi:
+    id: I32
+    name: David /Lascelles/
+    titl: Viscount
+    sex: M
+    birt:
+      date: '1950'
+    fams: "@F34@"
+    famc: "@F27@"
+    rin: '33'
+- indi:
+    id: I33
+    name: Margaret /Messenger/
+    sex: F
+    fams: "@F34@"
+    rin: '34'
+- indi:
+    id: I34
+    name: Emily //
+    titl: Hon.
+    sex: F
+    birt:
+      date: '1976'
+    famc: "@F34@"
+    rin: '35'
+- indi:
+    id: I35
+    name: Benjamin //
+    titl: Hon.
+    sex: M
+    birt:
+      date: '1978'
+    famc: "@F34@"
+    rin: '36'
+- indi:
+    id: I36
+    name: Alexander /Lascelles/
+    titl: Hon.
+    sex: M
+    birt:
+      date: '1980'
+    famc: "@F34@"
+    rin: '37'
+- indi:
+    id: I37
+    name: Edward /Lascelles/
+    sex: M
+    birt:
+      date: '1982'
+    famc: "@F34@"
+    rin: '38'
+- indi:
+    id: I38
+    name: James /Lascelles/
+    titl: Hon.
+    sex: M
+    birt:
+      date: '1953'
+    fams: "@F35@"
+    famc: "@F27@"
+    rin: '39'
+- indi:
+    id: I39
+    name: Fredericka Ann /Duhrrson/
+    sex: F
+    fams: "@F35@"
+    rin: '40'
+- indi:
+    id: I40
+    name: Sophie /Lascelles/
+    sex: F
+    birt:
+      date: '1973'
+    famc: "@F35@"
+    rin: '41'
+- indi:
+    id: I41
+    name: Rowan /Lascelles/
+    sex: M
+    birt:
+      date: '1977'
+    famc: "@F35@"
+    rin: '42'
+- indi:
+    id: I42
+    name: Jeremy /Lascelles/
+    titl: Hon.
+    sex: M
+    birt:
+      date: '1955'
+    fams: "@F36@"
+    famc: "@F27@"
+    rin: '43'
+- indi:
+    id: I43
+    name: Julie /Bayliss/
+    sex: F
+    fams: "@F36@"
+    rin: '44'
+- indi:
+    id: I44
+    name: Thomas /Lascelles/
+    sex: M
+    birt:
+      date: '1982'
+    famc: "@F36@"
+    rin: '45'
+- indi:
+    id: I45
+    name: Ellen /Lascelles/
+    sex: F
+    birt:
+      date: '1984'
+    famc: "@F36@"
+    rin: '46'
+- indi:
+    id: I46
+    name: Patricia /Tuckwell/
+    sex: F
+    birt:
+      date: '1923'
+    fams: "@F46@"
+    rin: '47'
+- indi:
+    id: I47
+    name: Mark /Lascelles/
+    titl: Hon.
+    sex: M
+    birt:
+      date: '1964'
+    famc: "@F29@"
+    rin: '48'
+- indi:
+    id: I48
+    name: Gerald /Lascelles/
+    titl: Hon.
+    sex: M
+    birt:
+      date: '1924'
+    fams: "@F30@"
+    famc: "@F10@"
+    rin: '49'
+- indi:
+    id: I49
+    name: Angela /Dowding/
+    sex: F
+    birt:
+      date: '1919'
+    fams: "@F28@"
+    rin: '50'
+- indi:
+    id: I50
+    name: Henry /Lascelles/
+    sex: M
+    birt:
+      date: '1953'
+    fams: "@F38@"
+    famc: "@F28@"
+    rin: '51'
+- indi:
+    id: I51
+    name: Alexandra /Morton/
+    sex: F
+    fams: "@F38@"
+    rin: '52'
+- indi:
+    id: I52
+    name: Elizabeth Collingwood /Colvin/
+    sex: F
+    birt:
+      date: '1924'
+    fams: "@F30@"
+    rin: '53'
+- indi:
+    id: I53
+    name: Martin /Lascelles/
+    sex: M
+    birt:
+      date: '1963'
+    famc: "@F30@"
+    rin: '54'
+- indi:
+    id: I54
+    name: Henry William Frederick/Windsor/
+    titl: Duke
+    sex: M
+    birt:
+      plac: York Cottage,Sandringham,Norfolk,England
+    deat:
+      date: '1974'
+    fams: "@F11@"
+    famc: "@F3@"
+    rin: '55'
+- indi:
+    id: I55
+    name: Alice Christabel /Montagu-Douglas/
+    titl: Lady
+    sex: F
+    birt:
+      plac: London,England
+    fams: "@F11@"
+    famc: "@F33@"
+    rin: '56'
+- indi:
+    id: I56
+    name: William Henry Andrew/Windsor/
+    titl: Prince
+    sex: M
+    birt:
+      plac: Hadley Common,Hertfordshire,England
+    chr:
+      plac: Private Chapel,Windsor Castle,Berkshire,England
+    deat:
+      plac: Near,Wolverhampton,England
+    famc: "@F11@"
+    rin: '57'
+- indi:
+    id: I57
+    name: Richard Alexander Walter/Windsor/
+    titl: Prince
+    sex: M
+    birt:
+      plac: Hadley Common,Hertfordshire,England
+    chr:
+      plac: Private Chapel,Windsor Castle,Berkshire,England
+    fams: "@F13@"
+    famc: "@F11@"
+    rin: '58'
+- indi:
+    id: I58
+    name: Birgitte of_Denmark /von_Deurs/
+    titl: Duchess
+    sex: F
+    birt:
+      date: '1947'
+    fams: "@F13@"
+    rin: '59'
+- indi:
+    id: I59
+    name: Alexander Patrick Gregers//
+    titl: Earl of Ulster
+    sex: M
+    birt:
+      plac: St. Marys Hosp.,Paddington,London,England
+    chr:
+      plac: Barnwell Church
+    famc: "@F13@"
+    rin: '60'
+- indi:
+    id: I60
+    name: Davina Elizabeth Alice/Windsor/
+    titl: Lady
+    sex: F
+    birt:
+      date: Saturday, 19th November 1977
+    chr:
+      plac: Barnwell Church,,England
+    famc: "@F13@"
+    rin: '61'
+- indi:
+    id: I61
+    name: Rose Victoria Birgitte/Windsor/
+    titl: Lady
+    sex: F
+    birt:
+      plac: St. Marys Hosp.,Paddington,England
+    chr:
+      plac: Barnwell Church,,England
+    famc: "@F13@"
+    rin: '62'
+- indi:
+    id: I62
+    name: George Edward Alexander/Windsor/
+    titl: Duke of Kent
+    sex: M
+    birt:
+      plac: York Cottage,Sandringham,Norfolk,England
+    deat:
+      plac: Morven,,,Scotland
+    fams: "@F9@"
+    famc: "@F3@"
+    rin: '63'
+- indi:
+    id: I63
+    name: Marina of_Greece //
+    titl: Princess
+    sex: F
+    birt:
+      plac: Athens,Greece
+    deat:
+      plac: Kensington,Palace,,England
+    fams: "@F9@"
+    famc: "@F25@"
+    rin: '64'
+- indi:
+    id: I64
+    name: Edward George Nicholas/Windsor/
+    titl: Duke of Kent
+    sex: M
+    birt:
+      plac: 3 Belgrave Sq.,,England
+    fams: "@F18@"
+    famc: "@F9@"
+    rin: '65'
+- indi:
+    id: I65
+    name: Katharine /Worsley/
+    titl: Duchess of Kent
+    sex: F
+    birt:
+      date: '1933'
+    fams: "@F18@"
+    famc: "@F37@"
+    rin: '66'
+- indi:
+    id: I66
+    name: George Philip of_St._Andrews/Windsor/
+    titl: Earl
+    sex: M
+    birt:
+      date: Tuesday, 26th June 1962
+    chr:
+      plac: Buckingham,Palace,Music Room,England
+    fams: "@F41@"
+    famc: "@F18@"
+    rin: '67'
+- indi:
+    id: I67
+    name: Sylvana /Tomaselli/
+    sex: F
+    birt:
+      plac: Canada
+    fams: "@F41@"
+    famc: "@F43@"
+    rin: '68'
+- indi:
+    id: I68
+    name: Helen Marina Lucy/Windsor/
+    titl: Lady
+    sex: F
+    birt:
+      date: Tuesday, 28th April 1964
+    chr:
+      plac: Private Chapel,Windsor Castle,Berkshire,England
+    famc: "@F18@"
+    rin: '69'
+- indi:
+    id: I69
+    name: Nicholas Charles Edward/Windsor/
+    titl: Lord
+    sex: M
+    birt:
+      plac: Kings College,Hospital,Denmark Hill
+    chr:
+      plac: Private Chapel,Windsor Castle,Berkshire,England
+    famc: "@F18@"
+    rin: '70'
+- indi:
+    id: I70
+    name: Alexandra /Windsor/
+    titl: Princess
+    sex: F
+    birt:
+      date: Friday, 25th December 1936
+    fams: "@F17@"
+    famc: "@F9@"
+    rin: '71'
+- indi:
+    id: I71
+    name: Angus /Ogilvy/
+    titl: Hon.
+    sex: M
+    birt:
+      date: '1928'
+    fams: "@F17@"
+    rin: '72'
+- indi:
+    id: I72
+    name: James Robert Bruce/Ogilvy/
+    sex: M
+    birt:
+      plac: Thatched House,Lodge,,England
+    fams: "@F45@"
+    famc: "@F17@"
+    rin: '73'
+- indi:
+    id: I73
+    name: Julia /Rawlinson/
+    sex: F
+    fams: "@F45@"
+    rin: '74'
+- indi:
+    id: I74
+    name: Marina Victoria Alexandra/Ogilvy/
+    sex: F
+    birt:
+      plac: Thatched House,Lodge,Richmond Park,England
+    fams: "@F39@"
+    famc: "@F17@"
+    rin: '75'
+- indi:
+    id: I75
+    name: Paul /Mowatt/
+    sex: M
+    birt:
+      date: ABT 1962
+    fams: "@F39@"
+    rin: '76'
+- indi:
+    id: I76
+    name: "/Mowatt/"
+    sex: F
+    birt:
+      date: Saturday, 26th May 1990
+    famc: "@F39@"
+    rin: '77'
+- indi:
+    id: I77
+    name: Michael /Windsor/
+    titl: Prince
+    sex: M
+    birt:
+      plac: Coppins,,England
+    fams: "@F31@"
+    famc: "@F9@"
+    rin: '78'
+- indi:
+    id: I78
+    name: Marie-Christine /von_Reibnitz/
+    titl: Baroness
+    sex: F
+    birt:
+      plac: Czechoslovakia
+    fams: "@F31@"
+    rin: '79'
+- indi:
+    id: I79
+    name: Frederick /Windsor/
+    titl: Lord
+    sex: M
+    birt:
+      plac: St. Mary's Hosp.,Paddington,London,England
+    chr:
+      plac: Chapel Royal,St. James Palace,England
+    famc: "@F31@"
+    rin: '80'
+- indi:
+    id: I80
+    name: Gabriella Marina Alexandra/Windsor/
+    titl: Lady
+    sex: F
+    birt:
+      plac: ",,England"
+    chr:
+      plac: Chapel Royal,St. James Palace,England
+    famc: "@F31@"
+    rin: '81'
+- indi:
+    id: I81
+    name: John Charles Francis/Windsor/
+    titl: Prince
+    sex: M
+    birt:
+      plac: York Cottage,Sandringham,Norfolk,England
+    deat:
+      plac: Wood Farm,Wolferton,Norfolk,England
+    buri:
+      plac: Sandringham,Norfolk,,England
+    famc: "@F3@"
+    rin: '82'
+- indi:
+    id: I82
+    name: B1 C1
+    birt:
+      date: Sunday, 2nd January 2000
+    rin: '83'
+    note:
+      conc: '4'
+- indi:
+    id: I83
+    name: A2 B2 C2
+    rin: '84'
+- indi:
+    id: I84
+    name: B2 C2 D2
+    rin: '85'
+- indi:
+    id: I85
+    name: A2 B2 C2 D2
+    rin: '86'
+- indi:
+    id: I86
+    name: A3B3 C3 D3
+    rin: '87'
+- indi:
+    id: I87
+    name: A3 B3 C3D3
+    rin: '88'
+- indi:
+    id: I88
+    name: A3B3 C3D3
+    rin: '89'
+- indi:
+    id: I89
+    name: a3b3 c3d3
+    rin: '90'
+- indi:
+    id: I90
+    name: A4B4C4D4
+    rin: '91'
+- indi:
+    id: I91
+    name: a4b4c4d4
+    rin: '92'
+- fam:
+    id: F1
+    chil: "@I1@"
+    div: N
+    marr:
+      plac: Chapel Royal,St. James Palace,England
+    rin: '93'
+- fam:
+    id: F2
+    husb: "@I1@"
+    wife: "@I2@"
+    chil: "@I3@"
+    marr:
+      plac: St. George Chap.,Windsor,,England
+    rin: '94'
+- fam:
+    id: F3
+    husb: "@I3@"
+    wife: "@I4@"
+    chil: "@I81@"
+    marr:
+      plac: Chapel Royal,St. James Palace
+    rin: '95'
+- fam:
+    id: F4
+    husb: "@I7@"
+    wife: "@I8@"
+    chil: "@I24@"
+    div: N
+    marr:
+      date: Thursday, 26th April 1923
+    rin: '96'
+- fam:
+    id: F5
+    husb: "@I25@"
+    wife: "@I24@"
+    chil: "@I27@"
+    div: Y
+    marr:
+      plac: Westminster,Cathedral,London,England
+    rin: '97'
+- fam:
+    id: F6
+    husb: "@I10@"
+    wife: "@I9@"
+    chil: "@I23@"
+    div: N
+    marr:
+      plac: Westminster,Abbey,London,England
+    rin: '98'
+- fam:
+    id: F7
+    husb: "@I16@"
+    wife: "@I15@"
+    chil: "@I18@"
+    div: N
+    marr:
+      plac: Westminster,Abbey,London,England
+    rin: '99'
+- fam:
+    id: F8
+    husb: "@I11@"
+    wife: "@I12@"
+    chil: "@I14@"
+    div: N
+    marr:
+      plac: St. Paul's,Cathedral,London,England
+    rin: '100'
+- fam:
+    id: F9
+    husb: "@I62@"
+    wife: "@I63@"
+    chil: "@I77@"
+    marr:
+      plac: Westminster,Abbey,London,England
+    rin: '101'
+- fam:
+    id: F10
+    husb: "@I29@"
+    wife: "@I28@"
+    chil: "@I48@"
+    marr:
+      plac: Westminster,Abbey,London,England
+    rin: '102'
+- fam:
+    id: F11
+    husb: "@I54@"
+    wife: "@I55@"
+    chil: "@I57@"
+    marr:
+      plac: Buckingham,Palace,London,England
+    rin: '103'
+- fam:
+    id: F12
+    husb: "@I5@"
+    wife: "@I6@"
+    div: N
+    marr:
+      plac: Chateau de Cande,Monts,,France
+    rin: '104'
+- fam:
+    id: F13
+    husb: "@I57@"
+    wife: "@I58@"
+    chil: "@I61@"
+    marr:
+      date: Wednesday, 19th July 1972
+    rin: '105'
+- fam:
+    id: F14
+    wife: "@I6@"
+    div: Y
+    marr:
+      date: '1916'
+    rin: '106'
+- fam:
+    id: F15
+    wife: "@I6@"
+    div: Y
+    marr:
+      date: '1928'
+    rin: '107'
+- fam:
+    id: F16
+    chil: "@I10@"
+    marr:
+      date: '1903'
+    rin: '108'
+- fam:
+    id: F17
+    husb: "@I71@"
+    wife: "@I70@"
+    chil: "@I74@"
+    marr:
+      plac: ",,England"
+    rin: '109'
+- fam:
+    id: F18
+    husb: "@I64@"
+    wife: "@I65@"
+    chil: "@I69@"
+    marr:
+      date: '1961'
+    rin: '110'
+- fam:
+    id: F19
+    chil: "@I4@"
+    rin: '111'
+- fam:
+    id: F20
+    chil: "@I8@"
+    rin: '112'
+- fam:
+    id: F21
+    husb: "@I19@"
+    wife: "@I20@"
+    chil: "@I22@"
+    marr:
+      plac: Westminster,Abbey,London,England
+    rin: '113'
+- fam:
+    id: F22
+    chil: "@I20@"
+    div: Y
+    marr:
+      plac: St. Margarets,Westminster,England
+    rin: '114'
+- fam:
+    id: F23
+    chil: "@I6@"
+    rin: '115'
+- fam:
+    id: F24
+    chil: "@I2@"
+    marr:
+      date: '1842'
+    rin: '116'
+- fam:
+    id: F25
+    chil: "@I63@"
+    marr:
+      date: '1902'
+    rin: '117'
+- fam:
+    id: F26
+    chil: "@I12@"
+    div: Y
+    marr:
+      plac: Westminster,Abbey,London,England
+    rin: '118'
+- fam:
+    id: F27
+    husb: "@I30@"
+    wife: "@I31@"
+    chil: "@I42@"
+    div: Y
+    marr:
+      date: '1949'
+    rin: '119'
+- fam:
+    id: F28
+    husb: "@I48@"
+    wife: "@I49@"
+    chil: "@I50@"
+    div: Y
+    marr:
+      date: '1952'
+    rin: '120'
+- fam:
+    id: F29
+    husb: "@I30@"
+    wife: "@I46@"
+    chil: "@I47@"
+    marr:
+      date: '1967'
+    rin: '121'
+- fam:
+    id: F30
+    husb: "@I48@"
+    wife: "@I52@"
+    chil: "@I53@"
+    marr:
+      date: '1978'
+    rin: '122'
+- fam:
+    id: F31
+    husb: "@I77@"
+    wife: "@I78@"
+    chil: "@I80@"
+    marr:
+      plac: Vienna,Austria
+    rin: '123'
+- fam:
+    id: F32
+    wife: "@I78@"
+    div: Y
+    marr:
+      date: Sunday, 19th September 1971
+    rin: '124'
+- fam:
+    id: F33
+    chil: "@I55@"
+    rin: '125'
+- fam:
+    id: F34
+    husb: "@I32@"
+    wife: "@I33@"
+    chil: "@I37@"
+    marr:
+      date: '1979'
+    rin: '126'
+- fam:
+    id: F35
+    husb: "@I38@"
+    wife: "@I39@"
+    chil: "@I41@"
+    marr:
+      date: '1973'
+    rin: '127'
+- fam:
+    id: F36
+    husb: "@I42@"
+    wife: "@I43@"
+    chil: "@I45@"
+    marr:
+      date: '1981'
+    rin: '128'
+- fam:
+    id: F37
+    chil: "@I65@"
+    rin: '129'
+- fam:
+    id: F38
+    husb: "@I50@"
+    wife: "@I51@"
+    marr:
+      date: '1979'
+    rin: '130'
+- fam:
+    id: F39
+    husb: "@I75@"
+    wife: "@I74@"
+    chil: "@I76@"
+    marr:
+      date: Monday, 19th February 1990
+    rin: '131'
+- fam:
+    id: F40
+    chil: "@I16@"
+    rin: '132'
+- fam:
+    id: F41
+    husb: "@I66@"
+    wife: "@I67@"
+    marr:
+      date: Tuesday, 19th January 1988
+    rin: '133'
+- fam:
+    id: F42
+    wife: "@I67@"
+    div: Y
+    rin: '134'
+- fam:
+    id: F43
+    chil: "@I67@"
+    div: Y
+    rin: '135'
+- fam:
+    id: F44
+    husb: "@I25@"
+    marr:
+      date: Sunday, 17th December 1978
+    rin: '136'
+- fam:
+    id: F45
+    husb: "@I72@"
+    wife: "@I73@"
+    marr:
+      date: AFT 1989
+    rin: '137'
+- fam:
+    id: F46
+    wife: "@I46@"
+    rin: '138'
+- fam:
+    id: F47
+    chil: "@I31@"
+    rin: '139'
+    sour:
+      page: '1'
+- sour:
+    id: S1
+    text: Hello
+- ! '':
+    id: TRLR
