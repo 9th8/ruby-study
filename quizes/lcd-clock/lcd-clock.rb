@@ -24,7 +24,7 @@ symbol_map = {0 => " " + " " * scale + " ",
               4 => " " + "-" * scale + " "}
 
 loop do
-  system("clear")
+  print "\e[H\e[2J"
 
   [:a, :b, :c, :d, :e].each do |row|
     ((row == :b || row == :d) ? scale.times : [1]).each do
