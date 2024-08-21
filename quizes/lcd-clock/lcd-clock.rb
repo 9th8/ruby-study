@@ -14,15 +14,18 @@ class ClockDisplay
 
   def parse_options
     parser = OptionParser.new do |opts|
+      opts.banner = "Displays current time with variable size font.\n\n" \
+        "Usage: #{File.basename($PROGRAM_NAME)} [OPTIONS]\n\n" \
+        "Options:\n"
       opts.on("-h", "--help", "Displays this message.") do
         puts opts
         exit
       end
-      opts.on("-s", "--scale N", Integer, "Sets display scale factor to N.") do |n|
+      opts.on("-s", "--scale N", Integer, "Sets font scale factor to N.") do |n|
         @scale = n
       end
-      opts.banner = "Displays current time with enlarged font.\n" \
-        "Usage: #{File.basename($PROGRAM_NAME)} [-s | --scale N]"
+      opts.separator ""
+      opts.separator "Example: #{File.basename($PROGRAM_NAME)} --scale 2"
     end
 
     begin
