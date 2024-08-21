@@ -9,6 +9,7 @@ class ClockDisplay
     @offset_v = (IO.console.winsize.first - 2 * @scale - 3) / 2
     parse_options
     hide_cursor
+    catch_q
     at_exit { restore_terminal }
   end
 
@@ -37,9 +38,11 @@ class ClockDisplay
     end
   end
 
-  def hide_cursor = print "\e[?25l\e[1m"  # прячем курсор и включаем болд.
+  # Прячем курсор и включаем болд.
+  def hide_cursor = print "\e[?25l\e[1m"
 
-  def restore_terminal = print "\e[?25h\e[0m"  # возвращаем курсор и сбрасываем болд.
+  # Очищаем экран, возвращаем курсор в левый верхний угол и делаем видимым, сбрасываем болд.
+  def restore_terminal = print "\e[2J\e[H\e[?25h\e[0m"
 
   def double_digit(value) = (value < 10) ? "0#{value}" : value.to_s
 
@@ -74,6 +77,15 @@ class ClockDisplay
     /q/i.match?(char)
   end
 
+  def catch_q
+    Thread.new do
+      loop do
+        sleep 0.1
+        exit if quit?
+      end
+    end
+  end
+
   def run
     loop do
       print "\e[2J\e[#{@offset_v};1H"  # очищаем экран и перемещаем курсор в колонку offset_v.
@@ -88,7 +100,6 @@ class ClockDisplay
           print "\n"
         end
       end
-      exit if quit?
       sleep 0.1
     end
   end
