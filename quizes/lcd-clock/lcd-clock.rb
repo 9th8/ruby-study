@@ -21,7 +21,8 @@ class ClockDisplay
       opts.on("-s", "--scale N", Integer, "Sets display scale factor to N.") do |n|
         @scale = n
       end
-      opts.banner = "Usage: #{File.basename($PROGRAM_NAME)} [-s | --scale N]"
+      opts.banner = "Displays current time with enlarged font.\n" \
+        "Usage: #{File.basename($PROGRAM_NAME)} [-s | --scale N]"
     end
 
     begin
@@ -33,17 +34,11 @@ class ClockDisplay
     end
   end
 
-  def hide_cursor
-    print "\e[?25l\e[1m"  # прячем курсор и включаем болд.
-  end
+  def hide_cursor = print "\e[?25l\e[1m"  # прячем курсор и включаем болд.
 
-  def restore_terminal
-    print "\e[?25h\e[0m"  # возвращаем курсор и сбрасываем болд.
-  end
+  def restore_terminal = print "\e[?25h\e[0m"  # возвращаем курсор и сбрасываем болд.
 
-  def double_digit(value)
-    (value < 10) ? "0#{value}" : value.to_s
-  end
+  def double_digit(value) = (value < 10) ? "0#{value}" : value.to_s
 
   def symbol_map
     {
