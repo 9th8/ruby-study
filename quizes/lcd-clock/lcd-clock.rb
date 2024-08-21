@@ -38,7 +38,7 @@ class ClockDisplay
   end
 
   def restore_terminal
-    print "\e[?25h\e[0m\e[3J"  # возвращаем курсор, сбрасываем болд и очищаем буфер прокрутки.
+    print "\e[?25h\e[0m"  # возвращаем курсор и сбрасываем болд.
   end
 
   def double_digit(value)
