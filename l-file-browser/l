@@ -1,0 +1,61 @@
+#!/usr/bin/env  ruby
+require "io/console"
+require "optparse"
+
+class FileBrowser
+  def initialize
+    @offset_h = IO.console.winsize.last
+    parse_options
+    hide_cursor
+    at_exit { restore_terminal }
+  end
+
+  def parse_options
+    parser = OptionParser.new do |opts|
+      opts.banner = "Terminal file browser with vi keybindings.\n\n" \
+        "Usage: #{File.basename($PROGRAM_NAME)} [OPTIONS]\n\n" \
+        "Options:\n"
+      opts.on("-h", "--help", "Displays this message.") do
+        puts opts
+        exit
+      end
+    end
+
+    begin
+      parser.parse!
+    rescue OptionParser::ParseError => e
+      puts e.message
+      puts parser
+      exit 1
+    end
+  end
+
+  def hide_cursor = print "\e[?25l"
+
+  # Очищаем экран, возвращаем курсор в левый верхний угол и делаем видимым.
+  def restore_terminal = print "\e[2J\e[H\e[?25h"
+
+  def accept_command
+    system("/bin/stty raw -echo")
+    begin
+      char = $stdin.read(1)
+    rescue
+      nil
+    end
+    system("/bin/stty -raw echo")
+    exit if /q/i.match?(char)
+  end
+
+  def run
+    loop do
+      print "\e[2J\e[H"
+      current_directory = Dir.pwd
+      entries = Dir.entries(current_directory).reject { |entry| entry == "." || entry == ".." }
+      puts entries.sort
+      accept_command
+    end
+  end
+end
+
+l = FileBrowser.new
+l.run
