@@ -3,7 +3,7 @@ array = [
     indi: {
       id: "I1",
       name: "Quka",
-      titl: "fuka",
+      titl: "peka",
       birt: {
         date: "fosa",
         plac: "pata"
